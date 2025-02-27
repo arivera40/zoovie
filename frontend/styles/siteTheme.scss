@@ -1,0 +1,11 @@
+@import './_variables';
+@import '~bootstrap/scss/bootstrap';
+
+// Custom styles
+body {
+  font-size: $custom-font-size;
+  line-height: $custom-line-height;
+}
+
+// Add more custom styles here
+

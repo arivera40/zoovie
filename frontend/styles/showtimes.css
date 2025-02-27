@@ -1,0 +1,14 @@
+.showtimes-container {
+  background-color: var(--light-color);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.movie-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+

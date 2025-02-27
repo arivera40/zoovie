@@ -1,0 +1,200 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theater-black: #121212;
+  --theater-dark: #1a1a1a;
+  --theater-red: #e50914;
+  --theater-gold: #ffc107;
+  --theater-light: #e0e0e0;
+  --theater-gray: #333333;
+  --curtain-red: #8b0000;
+}
+
+body {
+  background-color: var(--theater-black);
+  color: var(--theater-light);
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theater-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theater-red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--curtain-red);
+}
+
+/* Theater curtain animation */
+@keyframes curtainOpen {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spotlight {
+  0%,
+  100% {
+    box-shadow: 0 0 50px 15px rgba(255, 193, 7, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 70px 25px rgba(255, 193, 7, 0.5);
+  }
+}
+
+/* Film strip */
+.film-strip {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 15px,
+    var(--theater-dark) 15px,
+    var(--theater-dark) 20px
+  );
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.page-transition-exit {
+  opacity: 1;
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Theater curtain */
+.theater-curtain {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--theater-gold);
+}
+
+.curtain-left,
+.curtain-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: var(--curtain-red);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 10px,
+      rgba(0, 0, 0, 0.1) 10px,
+      rgba(0, 0, 0, 0.1) 20px
+    );
+  z-index: 10;
+  transform-origin: left top;
+  animation: curtainOpen 2s forwards ease-in-out;
+}
+
+.curtain-left {
+  left: 0;
+  transform-origin: left top;
+}
+
+.curtain-right {
+  right: 0;
+  transform-origin: right top;
+}
+
+/* Movie clapper */
+.movie-clapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: var(--theater-black);
+  border: 2px solid var(--theater-light);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px;
+  transform: rotate(-15deg);
+  transition: transform 0.3s ease;
+}
+
+.movie-clapper:hover {
+  transform: rotate(0deg);
+}
+
+.clapper-top {
+  height: 40%;
+  background-color: var(--theater-light);
+  display: flex;
+  justify-content: space-between;
+}
+
+.clapper-stripe {
+  width: 10%;
+  height: 100%;
+  background-color: var(--theater-black);
+}
+
+.clapper-bottom {
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Spotlight effect */
+.spotlight {
+  position: relative;
+}
+
+.spotlight::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: spotlight 4s infinite;
+  z-index: -1;
+}
+
+/* Card hover effects */
+.movie-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
+}
+
